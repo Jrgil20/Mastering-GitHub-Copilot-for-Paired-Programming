@@ -95,7 +95,7 @@ En la sección anterior aprendiste cómo usar tanto lenguaje natural como comand
 1. Abre el panel de archivos y navega a `webapp/main.py`. Abre el archivo `main.py`, navega al final de los archivos y escribe (o copia):
 
 ```python
-# Create a Pydantic model so that I can use it in a new route that will accept JSON with text as a key which accepts a string
+# Crea un modelo Pydantic para que pueda usarlo en una nueva ruta que aceptará JSON con "text" como clave, la cual acepta una cadena de texto
 ```
 
 La salida debería ser similar a esta: 
@@ -107,7 +107,7 @@ La salida debería ser similar a esta:
 2. Ahora queremos usar la característica "inline" de Copilot. Cuando usamos la característica "inline" podemos enfocarnos en el código frente a nosotros y hacer cambios progresivos en nuestra base de código. A continuación, vamos a generar un nuevo endpoint en la parte inferior del archivo `main.py`. Coloca tu cursor debajo de la última ruta que se creó y presiona `CTRL + I` para abrir el chat en línea. Escribe o copia el siguiente texto: 
 
 ```python
-# Create a FastAPI endpoint that accepts a POST request with a JSON body containing a single field called "text" and returns a checksum of the text 
+# Crea un endpoint de FastAPI que acepte una solicitud POST con un cuerpo JSON que contenga un solo campo llamado "text" y devuelva el checksum del texto
 ```
 
 <div align="left">
@@ -128,16 +128,15 @@ Revisa las sugerencias de Copilot y verifica la salida. En este caso combinamos 
 
 5. Después de generar el código del endpoint `/checksum`, puedes explorar un poco más con Copilot. Prueba las siguientes sugerencias: 
 
-```python
-Enhance the checksum endpoint to accept a 'hash_type' parameter that can be 'md5', 'sha1', or 'sha256'
+Mejora el endpoint de checksum para aceptar un parámetro 'hash_type' que puede ser 'md5', 'sha1' o 'sha256'
 ```
 
 ```python
-Add validation to ensure text is not empty and has a maximum length of 1000 characters
+Agrega validación para asegurar que el texto no esté vacío y tenga una longitud máxima de 1000 caracteres
 ```
 
 ```python
-Improve the docstring for the checksum_text function with more details and examples
+Mejorar el docstring de la función checksum_text con más detalles y ejemplos.
 ```
 
 7. Mientras que las sugerencias "inline" son excelentes para sugerir código similar a un mecanismo de autocompletado, las Sugerencias de Siguiente Edición (NES) predicen el siguiente cambio lógico en tu código basándose en ediciones recientes en cualquier parte de tu archivo. Esto ayuda a mantener el flujo y la consistencia como desarrollador. NES sugiere revisiones a tu código, comentarios e incluso pruebas. Puede rastrear cambios recientes para anticipar ediciones futuras, trabajando a través de múltiples líneas y símbolos. Resaltará las sugerencias con flechas en la canaleta del editor. En los pasos anteriores ya habrás notado una flecha verde en la canaleta, proporcionando una sugerencia y la capacidad de aceptar o rechazar la sugerencia. 
@@ -170,11 +169,11 @@ En los ejercicios anteriores logramos lo siguiente:
 2. Dale al modo agente un prompt detallado. Para este ejemplo vamos a pedirle a Copilot que haga varias mejoras a nuestro proyecto. Copia y pega el prompt de abajo en la ventana de Chat.
 
 ```
-1.	Fix and resolve all code structure issues, including using proper Python comments and syntax
-2.	Improve the API design to include consistent error handling, input validation and API versioning.
-3.	Include unit and integration tests and ensure everything in this project is well documented. 
-4.	Make this application deployment ready 
-5.	Improve the performance and security of this application.
+1.	Arregla y resuelve todos los problemas de estructura de código, incluyendo el uso de comentarios y sintaxis adecuados de Python.
+2.	Mejora el diseño de la API para incluir manejo de errores consistente, validación de entradas y versionado de la API.
+3.	Incluye pruebas unitarias y de integración, y asegúrate de que todo en este proyecto esté bien documentado.
+4.	Prepara esta aplicación para despliegue.
+5.	Mejora el rendimiento y la seguridad de esta aplicación.
 ```
 
 Cuando se ejecuta en modo agente, Copilot tomará un poco más de tiempo para trabajar a través de todas las tareas. Primero analizará tu intención desde el prompt de arriba. Planificará y ejecutará las varias tareas. 
@@ -194,39 +193,39 @@ Mientras Agent Mode está trabajando, también podemos ver que ha creado documen
 Para este paso en el taller, el modo agente debería haber tomado varios minutos para completar tus tareas. Revisa los varios cambios y confirma que han logrado toda la salida dada. Con Agent mode, también genera qué cambios se hicieron. El siguiente resumen de cambios que se hicieron está resumido abajo:
 
 ```md
-**Code Structure Issues Fixed**
-- Replaced JavaScript-style single-line comments (//) with proper Python comments (#)
-- Fixed indentation issues in the checksum endpoint
-- Restructured the application into proper modules and packages
-- Followed PEP 8 style guidelines
+**Problemas de Estructura de Código Solucionados**
+- Se reemplazaron los comentarios de una sola línea estilo JavaScript (//) por comentarios adecuados de Python (#)
+- Se corrigieron problemas de indentación en el endpoint de checksum
+- Se reestructuró la aplicación en módulos y paquetes apropiados
+- Se siguieron las directrices de estilo PEP 8
 
-**API Design Improvements**
-- Added API versioning with a /api/v1 prefix
-- Implemented consistent error handling with try/except blocks
-- Enhanced input validation using Pydantic's Field and validator capabilities
-- Added response models for type checking and documentation
-- Added health check endpoint for monitoring
+**Mejoras en el Diseño de la API**
+- Se agregó versionado de la API con el prefijo /api/v1
+- Se implementó manejo de errores consistente usando bloques try/except
+- Se mejoró la validación de entradas utilizando las capacidades de Field y validator de Pydantic
+- Se añadieron modelos de respuesta para comprobación de tipos y documentación
+- Se agregó un endpoint de verificación de estado (health check) para monitoreo
 
-**Tests and Documentation**
-- Created comprehensive unit tests for utility functions
-- Added integration tests for API endpoints
-- Improved docstrings in all functions and classes
-- Created a detailed README with examples and instructions
+**Pruebas y Documentación**
+- Se crearon pruebas unitarias completas para funciones utilitarias
+- Se añadieron pruebas de integración para los endpoints de la API
+- Se mejoraron los docstrings en todas las funciones y clases
+- Se creó un README detallado con ejemplos e instrucciones
 
-**Deployment Ready**
-- Added a Dockerfile for containerization
-- Created a gunicorn configuration for production deployment
-- Added a run script for local development
-- Enhanced the requirements.txt file with specific versions
+**Listo para Despliegue**
+- Se añadió un Dockerfile para la contenerización
+- Se creó una configuración de gunicorn para despliegue en producción
+- Se agregó un script de ejecución para desarrollo local
+- Se mejoró el archivo requirements.txt con versiones específicas
 
-**Performance and Security Enhancements**
-- Added GZIP compression middleware for better performance
-- Implemented rate limiting headers
-- Added CORS middleware with configurable origins
-- Improved error handling to prevent information leakage
-- Added logging for better monitoring and debugging
-- Implemented more flexible hashing algorithms with proper validation
-- The application now follows best practices for Python web applications, with a clear structure, proper error handling, comprehensive testing, and deployment configuration.
+**Mejoras de Rendimiento y Seguridad**
+- Se añadió middleware de compresión GZIP para mejor rendimiento
+- Se implementaron cabeceras de limitación de tasa (rate limiting)
+- Se agregó middleware CORS con orígenes configurables
+- Se mejoró el manejo de errores para evitar filtración de información
+- Se añadió logging para mejor monitoreo y depuración
+- Se implementaron algoritmos de hashing más flexibles con validación adecuada
+- La aplicación ahora sigue las mejores prácticas para aplicaciones web en Python, con una estructura clara, manejo de errores adecuado, pruebas completas y configuración para despliegue.
 ```
 
 3. Finalmente, verifica que los cambios y el nuevo endpoint estén funcionando. Copilot generará el endpoint para ti, o puedes navegar al panel 'ports' en la ventana de terminal para obtener la URL. La URL debería tener el siguiente formato: 
@@ -275,38 +274,38 @@ Por ejemplo, en tu proyecto puedes definir el estilo de codificación (como PEP 
 El ejemplo de abajo puede ser personalizado en tu propio proyecto, para este ejemplo hemos creado un archivo de instrucciones específico a nuestros requisitos de Python en este proyecto. 
 
 ```md
-# Project Guidelines
+# Guía del Proyecto
 
-## Project Overview
+## Descripción General del Proyecto
 
-This repository contains a FastAPI application that provides various endpoints for token generation, text echo, and checksum calculation. 
+Este repositorio contiene una aplicación FastAPI que ofrece varios endpoints para generación de tokens, eco de texto y cálculo de checksum.
 
-## Technology Stack
--  **Token Generation** - An endpoint that generates secure random tokens with configurable length.
-- **Text Echo** - A simple endpoint that echoes back any text sent to it.
-- **Checksum Calculation** - An endpoint that calculates cryptographic hashes (SHA-256, SHA-512, or MD5) for provided text.
-- **Health Checking** - A monitoring endpoint that returns the API status and version.
+## Stack Tecnológico
+- **Generación de Tokens**: Un endpoint que genera tokens aleatorios seguros con longitud configurable.
+- **Eco de Texto**: Un endpoint sencillo que devuelve cualquier texto enviado.
+- **Cálculo de Checksum**: Un endpoint que calcula hashes criptográficos (SHA-256, SHA-512 o MD5) para el texto proporcionado.
+- **Verificación de Estado**: Un endpoint de monitoreo que retorna el estado y la versión de la API.
 
-### ✨ Coding Style
-- Follow **PEP 8** standards for formatting and naming.
-- Use **type hints** consistently across all functions.
-- Prefer **f-strings** for string interpolation.
-- Include **Google-style docstrings** for all public functions and classes.
+### ✨ Estilo de Codificación
+- Seguir los estándares **PEP 8** para formato y nomenclatura.
+- Usar **type hints** de forma consistente en todas las funciones.
+- Preferir **f-strings** para la interpolación de cadenas.
+- Incluir **docstrings estilo Google** en todas las funciones y clases públicas.
 
-### 🧪 Testing Guidance
-- Use **pytest** for writing unit tests.
-- Mock external dependencies using `pytest-mock`.
-- Name tests descriptively, e.g., `test_generate_token_valid_input`.
+### 🧪 Guía de Pruebas
+- Utilizar **pytest** para escribir pruebas unitarias.
+- Simular dependencias externas usando `pytest-mock`.
+- Nombrar las pruebas de forma descriptiva, por ejemplo: `test_generate_token_valid_input`.
 
-### 🏗️ Architecture Preferences
-- Use **FastAPI** conventions for routing and dependency injection.
-- Define **Pydantic models** for request and response schemas.
-- Keep logic modular—separate API routes, models, and utility functions.
+### 🏗️ Preferencias de Arquitectura
+- Seguir las convenciones de **FastAPI** para rutas y gestión de dependencias.
+- Definir **modelos Pydantic** para los esquemas de solicitud y respuesta.
+- Mantener la lógica modular: separar rutas de API, modelos y funciones utilitarias.
 
-### 📚 Documentation & Comments
-- Generate concise inline comments for non-obvious logic.
-- Include endpoint descriptions in FastAPI route docstrings.
-- Avoid redundant comments that restate code behavior.
+### 📚 Documentación y Comentarios
+- Generar comentarios concisos en línea para lógica no obvia.
+- Incluir descripciones de endpoints en los docstrings de las rutas FastAPI.
+- Evitar comentarios redundantes que repitan el comportamiento del código.
 ```
 
 2. También puedes crear archivos de instrucciones específicos que se aplicarán automáticamente solo a archivos o directorios específicos. Deben estar dentro de un directorio `.github/instructions` y terminar en `.instructions.md`. 
@@ -318,23 +317,23 @@ En el directorio `.github`, crea un subdirectorio `instructions`. Dentro del sub
 applyTo: "webapp/api/*.py"
 ---
 
-## Coding Conventions
+## Convenciones de Codificación
 
-- Follow PEP 8 for variables and functions
-- PascalCase for class names
-- Use typehints for clarity and tooling support 
-- Add detailed docstrings to endpoint functions
-- Include examples in Pydantic model Config
-- Use descriptive parameter names and Field descriptions
-- Consider async handlers for I/O bound operations
-- Configure CORS with specific origins in production
-- Use middleware for rate limiting
+- Seguir PEP 8 para variables y funciones
+- PascalCase para nombres de clases
+- Usar type hints para claridad y soporte de herramientas
+- Agregar docstrings detallados a las funciones de los endpoints
+- Incluir ejemplos en la configuración del modelo Pydantic (Config)
+- Usar nombres de parámetros descriptivos y descripciones en Field
+- Considerar handlers async para operaciones de E/S
+- Configurar CORS con orígenes específicos en producción
+- Usar middleware para limitación de tasa (rate limiting)
 
+## Accesibilidad
 
-## Accessibility
+- Asegurar relaciones de contraste adecuadas para el texto
+- Proporcionar mensajes de error legibles para humanos con información accionable
 
-- Ensure proper contrast ratios for text
-- Provide human-readable error messages with actionable information
 ```
 
 3. Adjunta tu archivo de instrucciones recién creado a GitHub Copilot Chat en Agent Mode y referencia el cambio en la salida de los ejemplos anteriores.
